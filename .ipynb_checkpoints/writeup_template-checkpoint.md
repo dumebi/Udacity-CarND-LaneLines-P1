@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/grayscale.jpg "Grayscale"
+![After](./0.png "After")
 
 ---
 
@@ -24,16 +24,17 @@ The goals / steps of this project are the following:
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
 My pipeline consisted of 6 steps. 
-    * First, I converted the images to grayscale
-    * Then I applied a gaussian blur to each image
-    * I applied [Canny Edge Detaction](https://en.wikipedia.org/wiki/Canny_edge_detector) which is used to detect edges in an image by marking where a color changes significantly to another; I've chosen a low_threshold of 50 and high_threshold of 150
-    * Next I limited the area in a polygon shape to where the lanes are, then applied [Hough Transform](https://en.wikipedia.org/wiki/Hough_transform) to get an array containing endpoints of detected line segments
-    * In order to draw a single line on the left and right lanes, I modified the draw_lines() function by determining the slope of each lines to get their direction, also if the slope of a line is not extreme enough, it will not be a considered edge.
-    If a slope is negative, its line belongs to the left lane marking. If the slope is positive, its line belongs to the right group. To add a line to either group, I added the various x and y endpoint coordinates to its corresponding array.
+* First, I converted the images to grayscale
+* Then I applied a gaussian blur to each image
+* I applied [Canny Edge Detaction](https://en.wikipedia.org/wiki/Canny_edge_detector) which is used to detect edges in an image by marking where a color changes significantly to another; I've chosen a low_threshold of 50 and high_threshold of 150
+* Next I limited the area in a polygon shape to where the lanes are, then applied [Hough Transform](https://en.wikipedia.org/wiki/Hough_transform) to get an array containing endpoints of detected line segments
+* In order to draw a single line on the left and right lanes, I modified the draw_lines() function by determining the slope of each lines to get their direction, also if the slope of a line is not extreme enough, it will not be a considered edge.
+    <br>If a slope is negative, its line belongs to the left lane marking. If the slope is positive, its line belongs to the right group. To add a line to either group, I added the various x and y endpoint coordinates to its corresponding array.
+    <br> Then I averaged the lines in each group into a single line that fits pretty closely in orientation and location in the image.
+* Lastly I drew the lines on the image
 
-
-![alt text][test_images/solidWhiteCurve]
-![alt text][test_images/0.png]
+![Before](./test_images/solidWhiteCurve.jpg "Before")
+![After](./0.png "After")
 
 
 ### 2. Identify potential shortcomings with your current pipeline
